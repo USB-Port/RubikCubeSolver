@@ -5,6 +5,8 @@
  */
 package rubikcubesolver;
 
+import java.util.Random;
+
 /**
  *
  * @author Siris
@@ -24,18 +26,30 @@ public class Cube {
 	for (int i = 0; i < 6; i++) {
 		for (int k = 0; k < 3; k++) {
 			for (int j = 0; j < 3; j++) {
-				if (i == FRONT)		
-					cube[FRONT][k][j] = 'W';
-				else if(i == 1)
-					cube[BACK][k][j] = 'B';
-				else if (i == 2)	
-					cube[RIGHT][k][j] = 'G';
-				else if (i == 3)	
-					cube[LEFT][k][j] = 'Y';
-				else if (i == 4)	
-					cube[TOP][k][j] = 'R';
-				else				
-					cube[DOWN][k][j] = 'O';
+                            switch(i){
+                                case FRONT:
+                                    cube[FRONT][k][j] = 'W';
+                                    break;
+                                case BACK:
+                                    cube[BACK][k][j] = 'B';
+                                    break;
+                                case RIGHT:
+                                    cube[RIGHT][k][j] = 'G';
+                                    break;
+                                case LEFT:
+                                    cube[LEFT][k][j] = 'Y';
+                                    break;
+                                case TOP:
+                                    cube[TOP][k][j] = 'R';
+                                    break;
+                                case DOWN:
+                                    cube[DOWN][k][j] = 'O';
+                                    break;
+                                default:
+                                    System.out.println("Error: Initializing cube failed!\n");
+                                    
+                            }
+
 			}
 		}
 	}
@@ -72,8 +86,211 @@ public class Cube {
 				System.out.print(cube[i][k][j] + " ");
 			}
 		}
+                
 	}
 }
+       public boolean isSolved(){
+            for (int i = 0; i < 6; i++) {
+                    for (int k = 0; k < 3; k++) {
+                            for (int j = 0; j < 3; j++) {
+                                switch(i){
+                                    case FRONT:
+                                        if(cube[FRONT][k][j] != 'W'){
+                                            return false;
+                                        }
+                                        break;
+                                    case BACK:
+                                        if(cube[BACK][k][j] != 'B'){
+                                            return false;
+                                        }
+                                        break;
+                                    case RIGHT:
+                                        if(cube[RIGHT][k][j] != 'G'){
+                                            return false;
+                                        }
+                                        break;
+                                    case LEFT:
+                                        if(cube[LEFT][k][j] != 'Y'){
+                                            return false;
+                                        }
+                                        break;
+                                    case TOP:
+                                        if(cube[TOP][k][j] != 'R'){
+                                            return false;
+                                        }
+                                        break;
+                                    case DOWN:
+                                        if(cube[DOWN][k][j] != 'O'){
+                                            return false;
+                                        }
+                                        break;
+                                    default:
+                                        System.out.println("Error: checking for a solved cube failed!\n");
+
+                                }
+
+                            }
+                    }
+            }
+            return true;
+       }
+       
+       public void randomizeCube(){
+           Random rand = new Random();
+           
+           for(int i = 150; i >= 0; i--){
+               
+               	switch(rand.nextInt(6)){
+                    case FRONT:
+                        F();
+                        break;
+                    case BACK:
+                        B();
+                        break;
+                    case LEFT:
+                        L();
+                        break;
+                    case RIGHT:
+                        R();
+                        break;
+                    case TOP:
+                        T();
+                        break;
+                    case DOWN:
+                        D();
+                        break;
+                    default:                                    
+                       
+                }
+           }
+       }
+        public void randomRotate(int side){
+
+               	switch(side){
+                    case FRONT:
+                        F();
+                        System.out.println("Front");
+                        break;
+                    case BACK:
+                        B();
+                        System.out.println("Back");
+                        break;
+                    case LEFT:
+                        L();
+                        System.out.println("Left");
+                        break;
+                    case RIGHT:
+                        R();
+                        System.out.println("Right");
+                        break;
+                    case TOP:
+                        T();
+                        System.out.println("Top");
+                        break;
+                    case DOWN:
+                        D();
+                        System.out.println("Down");
+                        break;
+                    default:                                    
+                       
+                }
+           
+        }
+        
+        public void rotateStream(String moves){
+            for(int i = 0; i <moves.length(); i++){
+                switch(moves.charAt(i)){
+                    case 'F':
+                        if(moves.length() == i+1){
+                            F();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Fp();
+                                i++;
+                            }
+                            else{
+                                F();
+                            }
+                        }
+                        break;
+                    case 'B':
+                        if(moves.length() == i+1){
+                            B();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Bp();
+                                i++;
+                            }
+                            else{
+                                B();
+                            }
+                        }
+                        break;
+                    case 'L':
+                        if(moves.length() == i+1){
+                            L();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Lp();
+                                i++;
+                            }
+                            else{
+                                L();
+                            }
+                        }
+                        break;
+                    case 'R':
+                        if(moves.length() == i+1){
+                            R();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Rp();
+                                i++;
+                            }
+                            else{
+                                R();
+                            }
+                        }
+                        break;
+                    case 'T':
+                        if(moves.length() == i+1){
+                            T();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Tp();
+                                i++;
+                            }
+                            else{
+                                T();
+                            }
+                        }
+                        break;
+                    case 'D':
+                        if(moves.length() == i+1){
+                            D();
+                        }
+                        else{
+                            if(moves.charAt(i+1) == 'p'){
+                                Dp();
+                                i++;
+                            }
+                            else{
+                                D();
+                            }
+                        }
+                        break;
+                    default:                                    
+                       
+                }
+                
+            }
+        }
+       
        
        public void F(){
            //Rotate the front corner colors
@@ -350,8 +567,8 @@ public class Cube {
            
            //rotate the front center colors
            temp = cube[DOWN][2][1];
-           cube[DOWN][2][1] = cube[DOWN][2][1];
-           cube[DOWN][2][1] = cube[DOWN][1][0];
+           cube[DOWN][2][1] = cube[DOWN][1][2];
+           cube[DOWN][1][2] = cube[DOWN][1][0];
            cube[DOWN][1][0] = cube[DOWN][0][1];
            cube[DOWN][0][1] = temp;
            
@@ -388,10 +605,10 @@ public class Cube {
            
            //rotate the front center colors     
            temp = cube[TOP][2][1];
-           cube[TOP][2][1] = cube[TOP][2][1];
            cube[TOP][2][1] = cube[TOP][1][0];
            cube[TOP][1][0] = cube[TOP][0][1];
-           cube[TOP][0][1] = temp;
+           cube[TOP][0][1] = cube[TOP][1][2];
+           cube[TOP][1][2] = temp;
            
            //rotate the outter top corner colors        
            temp = cube[FRONT][0][2];
@@ -464,10 +681,10 @@ public class Cube {
            
            //rotate the front center colors
            temp = cube[LEFT][2][1];
-           cube[LEFT][2][1] = cube[LEFT][2][1];
            cube[LEFT][2][1] = cube[LEFT][1][0];
            cube[LEFT][1][0] = cube[LEFT][0][1];
-           cube[LEFT][0][1] = temp;
+           cube[LEFT][0][1] = cube[LEFT][1][2];
+           cube[LEFT][1][2] = temp;
            
            //rotate the outter top corner colors
            temp = cube[BACK][2][2];
@@ -502,10 +719,10 @@ public class Cube {
            
            //rotate the front center colors
            temp = cube[RIGHT][2][1];
-           cube[RIGHT][2][1] = cube[RIGHT][2][1];
            cube[RIGHT][2][1] = cube[RIGHT][1][0];
            cube[RIGHT][1][0] = cube[RIGHT][0][1];
-           cube[RIGHT][0][1] = temp;
+           cube[RIGHT][0][1] = cube[RIGHT][1][2];
+           cube[RIGHT][1][2] = temp;
            
            //rotate the outter top corner colors
            temp = cube[BACK][0][0];

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package rubikcubesolver;
-
+import java.util.Random;
 /**
  *
  * @author Siris
@@ -17,10 +17,32 @@ public class RubikCubeSolver {
     public static void main(String[] args) {
         // TODO code application logic here
         Cube cube = new Cube();
-        cube.R();
-        cube.Rp();
-       
+        //cube.randomizeCube();
+        
+        
+        cube.rotateStream("FRpDpRFF");
         cube.displayCube();
+        
+        //if(cube.isSolved())
+          //  System.out.println("The Cube has been solved!");
+        //else
+          //  System.out.println("The cube is not solved!");
+        //cube.displayCube();
+        /*
+        long count = 0;
+        Random rand = new Random();
+        
+        while(!cube.isSolved()){
+            cube.randomRotate(rand.nextInt(6));
+            count++;
+            //cube.displayCube();
+        }
+        if(cube.isSolved())
+            System.out.println("The Cube has been solved!");
+        else
+            System.out.println("The cube is not solved!");
+        cube.displayCube();
+        */
         System.out.println("");
         
     }
