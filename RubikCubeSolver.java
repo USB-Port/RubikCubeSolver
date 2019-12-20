@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rubikcubesolver;
 import java.util.Random;
 /**
  *
@@ -20,7 +19,7 @@ public class RubikCubeSolver {
         //cube.randomizeCube();
         
         
-        cube.rotateStream("FRpDpRFF");
+        //cube.rotateStream("FRpDpRFF");
         cube.displayCube();
         
         //if(cube.isSolved())
