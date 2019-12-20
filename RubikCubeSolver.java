@@ -19,13 +19,13 @@ public class RubikCubeSolver {
         //cube.randomizeCube();
         
         
-        //cube.rotateStream("FRpDpRFF");
+        cube.rotateStream("F");
         cube.displayCube();
         
-        //if(cube.isSolved())
-          //  System.out.println("The Cube has been solved!");
-        //else
-          //  System.out.println("The cube is not solved!");
+        if(cube.isSolved())
+            System.out.println("The Cube has been solved!");
+        else
+            System.out.println("The cube is not solved!");
         //cube.displayCube();
         /*
         long count = 0;

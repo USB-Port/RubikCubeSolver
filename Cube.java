@@ -82,8 +82,9 @@ public class Cube {
                 
 		for (int k = 0; k < 3; k++) {
 			for (int j = 0; j < 3; j++) {
-				System.out.print(cube[i][k][j] + " ");
+				System.out.print("["+cube[i][k][j] + "] ");
 			}
+                        System.out.print("\n");
 		}
                 
 	}
